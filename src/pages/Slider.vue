@@ -77,7 +77,7 @@ export default {
 .fade-enter-from {
   opacity: 0;
   transform: translateX(-100%);
-},
+}
 .fade-leave-to {
   opacity: 0;
   transform: translateX(100%);
