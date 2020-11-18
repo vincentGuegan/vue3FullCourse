@@ -1,6 +1,6 @@
 <template>
 <section
-@click="$emit('close-login')"
+@click="close"
 class="z-20 h-screen w-screen bg-gray-500 fixed top-0 opacity-50"
 >
 </section>
@@ -15,7 +15,7 @@ class="z-20 h-screen w-screen bg-gray-500 fixed top-0 opacity-50"
                     <input 
                         class="rounded shadow p-2 w-full" 
                         placeholder="Enter your email or username"
-                        v-model="form.email" />
+                        v-model="email" />
                 </div>
                 <div class="my-4">
                     <label>Password</label>
@@ -23,10 +23,15 @@ class="z-20 h-screen w-screen bg-gray-500 fixed top-0 opacity-50"
                         class="rounded shadow p-2 w-full" 
                         type="password" 
                         placeholder="Enter your password"
-                        v-model="form.password" />
+                        v-model="password" />
                 </div>
                 <div class="my-4">
-                    <button type="submit" class="w-full rounded shadow-md bg-gradient-to-r from-red-800 to pink-800 text-white p-2">Login</button>
+                    <button type="submit" 
+                        class="w-full rounded shadow-md bg-gradient-to-r from-red-800 to pink-800 text-white p-2"
+                        >
+                        <span v-if="!isLoading">Login</span>
+                        <span v-else>Loading</span>
+                    </button>
                 </div>
             </form>
             </div>
@@ -36,19 +41,35 @@ class="z-20 h-screen w-screen bg-gray-500 fixed top-0 opacity-50"
 </template>
  
 <script>
+import firebase from "../utilities/firebase";
+
 export default {
     data() {
         return {
-            form :{
                 email: '',
                 password: '',
-            }
-        };
+                isLoading: false,
+        }
     },
     methods: {
         submit() {
-            this.form
-            // submit the form
+            this.isLoading = true;
+            firebase
+                .auth()
+                .signInWithEmailAndPassword(this.email, this.password)
+                .then(() => {
+                this.email = "";
+                this.password = "";
+                this.isLoading = false;
+                this.close();
+                })
+                .catch((e) => {
+                console.log(e);
+                this.isLoading = false;
+                })
+        },
+        close() {
+            this.$emit('close-login');
         }
     }
 }
