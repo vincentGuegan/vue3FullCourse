@@ -13,6 +13,7 @@ class="z-20 h-screen w-screen bg-gray-500 fixed top-0 opacity-50"
                 <div class="my-4">
                     <label>Email or Username</label>
                     <input 
+                        ref="emailRef"
                         class="rounded shadow p-2 w-full" 
                         placeholder="Enter your email or username"
                         v-model="email" />
@@ -71,7 +72,10 @@ export default {
         close() {
             this.$emit('close-login');
         }
-    }
+    },
+    mounted() {
+      this.$refs.emailRef.focus();
+    },
 }
 </script>
 

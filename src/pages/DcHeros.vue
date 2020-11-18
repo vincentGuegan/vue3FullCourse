@@ -12,14 +12,27 @@
       </ul>
     <form class="mt-10"
       @submit.prevent="addHero">
-      <input class="border rounded" v-model="newHero" placeholder="Type Hero Name Here"/>
-      <button class="border rounded bg-gradient-to-r from-red-700 to-pink-500 text-white" type="submit">Add Hero</button>
+      <input 
+        class="border rounded" 
+        v-model="newHero" 
+        placeholder="Type Hero Name Here"
+        ref="newHeroRef"
+      />
+      <button 
+        class="border rounded bg-gradient-to-r from-red-700 to-pink-500 text-white" 
+        type="submit"
+      >
+      Add Hero
+      </button>
     </form>
   </div>
  </template>
  
  <script>
  export default {
+    mounted() {
+      this.$refs.newHeroRef.focus();
+    },
      computed: {
         herosCount() {
           return this.dcHeros.length;
