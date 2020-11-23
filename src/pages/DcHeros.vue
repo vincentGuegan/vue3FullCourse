@@ -29,38 +29,40 @@
  </template>
  
  <script>
+import { onMounted, ref, computed } from "vue";
  export default {
-    mounted() {
-      this.$refs.newHeroRef.focus();
-    },
-     computed: {
-        herosCount() {
-          return this.dcHeros.length;
-        },
-    },
-    methods: {
-      addHero() {
-        if(this.newHero != ""){
-          this.dcHeros.unshift({ name: this.newHero });
-          this.newHero = '';
-        }
-      },
-      remove(index) {
-        this.dcHeros = this.dcHeros.filter((hero, i) => i != index);
-      },
-    },
-     data(){
-      return {
-        newHero:"",
-        dcHeros: [
+   setup(){
+     const newHeroRef = ref("");
+     const newHero = ref("");
+     const dcHeros = ref([
           {name: "Supergirl"},
           {name: "Superman"},
           {name: "Flash"},
           {name: "Batman"},
           {name: "Antman"}
-        ],
+      ]);
+
+      onMounted(() => {
+        newHeroRef.value.focus();
+      });
+
+      const herosCount = computed({
+          get: () => dcHeros.value.length,
+      });
+
+      function remove(index) {
+      dcHeros.value = dcHeros.value.filter((hero, i) => i != index);
       }
-    }
+
+      function addHero() {
+        if(newHero.value != ""){
+          dcHeros.value.unshift({ name: newHero.value });
+          newHero.value = '';
+        }
+      }
+
+    return { dcHeros, newHero, remove, addHero, newHeroRef, herosCount };
+   },
  }
  </script>
  
