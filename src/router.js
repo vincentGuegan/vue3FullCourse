@@ -13,7 +13,7 @@ const routes = [
     {path:'/dc-heros', component:DcHeros},
     {path: '/calendar', component:Calendar},
     {path: '/markdown', component:Markdown},
-    {path: '/slider', component:Slider},
+    {path: '/slider-carousel', component:Slider},
     {path: '/calculator', component:Calculator},
     {path: '/reusable-modal', component:ReusableModal},  
 ];
