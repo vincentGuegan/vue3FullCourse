@@ -15,7 +15,7 @@ const routes = [
     {path: '/calendar', component:Calendar},
     {path: '/markdown', component:Markdown},
     {path: '/slider-carousel', component:Slider},
-    {path: '/calculator', component:Calculator, meta: {middleware:'auth'},},
+    {path: '/calculator', component:Calculator, meta: {middleware:'auth'}},
     {path: '/reusable-modal', component:ReusableModal},
     {path: '/chat',
      component:Chat,

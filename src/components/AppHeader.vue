@@ -20,7 +20,7 @@
         <button
           v-else
           class="mx-2"
-          @click="$emit('open-login-modal')"
+          @click="openLogin"
         >
           Login
         </button>
@@ -57,6 +57,9 @@ export default {
         .signOut()
         /* .then((res) => {})
         .catch((e) => {}); */
+    },
+    openLogin () {
+      this.$store.commit("setLoginModal", true);
     }
   }
 }
