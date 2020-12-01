@@ -85,8 +85,8 @@ export default {
         },
     },
     mounted() {
-      this.$refs.emailRef.focus();
-    },
+/*       this.$refs.emailRef.focus();
+ */    },
 }
 </script>
 
