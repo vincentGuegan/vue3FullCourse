@@ -32,7 +32,6 @@
 import firebase from "../utilities/firebase";
 
 export default {
-  props: { isLoggedIn: { type: Boolean, required: false } },
   data(){
     return {
       list:[
@@ -43,7 +42,12 @@ export default {
         {title: "Calculator", to:"/calculator"},
         {title: "Modal", to:"/reusable-modal"},
         {title: "Chat", to:"/chat"}
-      ]
+      ],
+    }
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
     }
   },
   methods: {
