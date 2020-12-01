@@ -7,6 +7,7 @@ import Slider from './pages/Slider'
 import Calculator from './pages/Calculator'
 import ReusableModal from './pages/ReusableModal'
 import Chat from './pages/Chat'
+import store from  './store/index'
 
 const routes = [
     {path: '/', component:Home},
@@ -16,7 +17,15 @@ const routes = [
     {path: '/slider-carousel', component:Slider},
     {path: '/calculator', component:Calculator},
     {path: '/reusable-modal', component:ReusableModal},
-    {path: '/chat', component:Chat},  
+    {path: '/chat',
+     component:Chat, 
+     beforeEnter: (_, __, next)=>{
+        if(!store.state.isLoggedIn) {
+            next("/");
+        } else {
+            next();
+        }
+    }},  
 
 ];
 
