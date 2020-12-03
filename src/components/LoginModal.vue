@@ -58,8 +58,8 @@ export default {
     },
     data() {
         return {
-                email: 'gueganvincent@gmail.com',
-                password: 'password',
+                email: 'user2@gmail.com',
+                password: 'Toto64',
                 isLoading: false,
         }
     },
